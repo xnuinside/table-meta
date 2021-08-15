@@ -1,0 +1,3 @@
+**v0.1.0**
+
+1. Table Meta moved from O!MyModels to separate library. To make it re-usebale in fakeme library.

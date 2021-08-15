@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "table-meta"
+version = "0.1.0"
+description = "Universal class that created to be a middleware, universal mapping for data from different parsers - simple-ddl-parser and py-models-parser"
+authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
+homepage = "https://github.com/xnuinside/table-meta"
+repository = "https://github.com/xnuinside/table-meta"
+license = "MIT"
+readme = "docs/README.rst"
+classifiers = [
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+
+[tool.poetry.dependencies]
+python = ">=3.6.2,<4.0"
+pydantic = "^1.8.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+twine = "^3.4.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
