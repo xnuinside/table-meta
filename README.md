@@ -1,5 +1,9 @@
 ### Table Meta
 
+
+![badge1](https://img.shields.io/pypi/v/table-meta) ![badge2](https://img.shields.io/pypi/l/table-meta) ![badge3](https://img.shields.io/pypi/pyversions/table-meta) ![workflow](https://github.com/xnuinside/table-meta/actions/workflows/main.yml/badge.svg)
+
+
 It's a universal class that created to be a middleware, universal mapping for data from different parsers - simple-ddl-parser and py-models-parser.
 
 Based on this middleware 2 libraries are worked - omymodels & fakeme. 
@@ -82,6 +86,9 @@ Usage example:
 
 
 ## Changelog
+**v0.1.1**
+1. Fix dependencies for python 3.6
+
 **v0.1.0**
 
 1. Table Meta moved from O!MyModels to separate library. To make it re-usebale in fakeme library.

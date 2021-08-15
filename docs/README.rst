@@ -2,6 +2,24 @@
 Table Meta
 ^^^^^^^^^^
 
+
+.. image:: https://img.shields.io/pypi/v/table-meta
+   :target: https://img.shields.io/pypi/v/table-meta
+   :alt: badge1
+ 
+.. image:: https://img.shields.io/pypi/l/table-meta
+   :target: https://img.shields.io/pypi/l/table-meta
+   :alt: badge2
+ 
+.. image:: https://img.shields.io/pypi/pyversions/table-meta
+   :target: https://img.shields.io/pypi/pyversions/table-meta
+   :alt: badge3
+ 
+.. image:: https://github.com/xnuinside/table-meta/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/xnuinside/table-meta/actions/workflows/main.yml/badge.svg
+   :alt: workflow
+
+
 It's a universal class that created to be a middleware, universal mapping for data from different parsers - simple-ddl-parser and py-models-parser.
 
 Based on this middleware 2 libraries are worked - omymodels & fakeme. 
@@ -84,6 +102,11 @@ Usage example:
 
 Changelog
 ---------
+
+**v0.1.1**
+
+
+#. Fix dependencies for python 3.6
 
 **v0.1.0**
 

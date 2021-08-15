@@ -3,7 +3,7 @@ from table_meta import TableMeta, Type
 
 
 def ddl_to_meta(data: Dict) -> Dict[str, Union[TableMeta, Type]]:
-    """ 
+    """
         this method expected output from simple ddl parser that sorted by types
         that mean you need to use group_by_type=True flag in simple-ddl-parser .run() method
     """
