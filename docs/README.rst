@@ -103,6 +103,16 @@ Usage example:
 Changelog
 ---------
 
+**v0.1.5**
+
+
+#. field 'attrs' added to Type to store values from py-models-parser output
+
+**v0.1.3**
+
+
+#. 'parents' added to Type and to Table
+
 **v0.1.1**
 
 

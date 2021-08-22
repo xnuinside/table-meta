@@ -86,6 +86,12 @@ Usage example:
 
 
 ## Changelog
+**v0.1.5**
+1. field 'attrs' added to Type to store values from py-models-parser output
+
+**v0.1.3**
+1. 'parents' added to Type and to Table
+
 **v0.1.1**
 1. Fix dependencies for python 3.6
 
