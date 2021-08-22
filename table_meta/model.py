@@ -51,4 +51,3 @@ class Type(BaseModel):
     parents: Optional[List[str]]
     properties: Optional[Dict]
     attrs: Optional[List[Dict]]
-
