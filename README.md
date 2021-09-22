@@ -1,7 +1,7 @@
 ### Table Meta
 
 
-![badge1](https://img.shields.io/pypi/v/table-meta) ![badge2](https://img.shields.io/pypi/l/table-meta) ![badge3](https://img.shields.io/pypi/pyversions/table-meta) ![workflow](https://github.com/xnuinside/table-meta/actions/workflows/main.yml/badge.svg)
+![badge1](https://img.shields.io/pypi/v/table-meta) ![badge2](https://img.shields.io/pypi/l/table-meta) ![badge3](https://img.shields.io/pypi/pyversions/table-meta) [![Tests Pipeline](https://github.com/xnuinside/table-meta/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/xnuinside/table-meta/actions/workflows/main.yml?query=branch%3Amain)
 
 
 It's a universal class that created to be a middleware, universal mapping for data from different parsers - simple-ddl-parser and py-models-parser.
