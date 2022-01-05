@@ -86,6 +86,11 @@ Usage example:
 
 
 ## Changelog
+**v0.2.0**
+1. Added support for parsing 'dataset' from data as 'table_schema' also added fields like 'project' (to support BigQuery metadata)
+2. Depencencies updated
+3. Added HQL Table Properties
+
 **v0.1.5**
 1. field 'attrs' added to Type to store values from py-models-parser output
 
