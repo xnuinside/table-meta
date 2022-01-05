@@ -72,7 +72,6 @@ class TableMeta(BaseModel):
                 properties[key] = value
         if not values.get("properties"):
             values["properties"] = {}
-        print(properties)
         values["properties"].update(properties)
 
         return values

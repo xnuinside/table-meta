@@ -1,4 +1,4 @@
-**v0.2.0**
+**v0.2.1**
 1. Added support for parsing 'dataset' from data as 'table_schema' also added fields like 'project' (to support BigQuery metadata)
 2. Depencencies updated
 3. Added HQL Table Properties

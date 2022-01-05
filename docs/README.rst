@@ -103,11 +103,12 @@ Usage example:
 Changelog
 ---------
 
-**v0.2.0**
+**v0.2.1**
 
 
 #. Added support for parsing 'dataset' from data as 'table_schema' also added fields like 'project' (to support BigQuery metadata)
 #. Depencencies updated
+#. Added HQL Table Properties
 
 **v0.1.5**
 
