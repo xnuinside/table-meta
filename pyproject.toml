@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "table-meta"
-version = "0.1.5"
+version = "0.2.0"
 description = "Universal class that created to be a middleware, universal mapping for data from different parsers - simple-ddl-parser and py-models-parser"
 authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
 homepage = "https://github.com/xnuinside/table-meta"

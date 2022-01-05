@@ -103,6 +103,12 @@ Usage example:
 Changelog
 ---------
 
+**v0.2.0**
+
+
+#. Added support for parsing 'dataset' from data as 'table_schema' also added fields like 'project' (to support BigQuery metadata)
+#. Depencencies updated
+
 **v0.1.5**
 
 
