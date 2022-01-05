@@ -7,7 +7,9 @@ class ColumnBase(BaseModel):
     type: str
     size: Optional[Union[str, int, Tuple]]
 
+
 class HQLProperties(BaseModel):
+
     clustered_by: Optional[List]
     location: Optional[str]
     external: Optional[bool]
@@ -17,7 +19,8 @@ class HQLProperties(BaseModel):
     map_keys_terminated_by: Optional[str]
     collection_items_terminated_by: Optional[str]
     stored_as: Optional[str]
-    
+
+
 class TableProperties(HQLProperties):
 
     indexes: Optional[List]
@@ -25,7 +28,8 @@ class TableProperties(HQLProperties):
     tablespace: Optional[str]
     partitioned_by: Optional[List[ColumnBase]]
     if_not_exists: Optional[bool]
-    
+
+
 class Column(ColumnBase):
 
     primary_key: bool = False
@@ -60,8 +64,7 @@ class TableMeta(BaseModel):
     @property
     def table_schema(self):
         return self.field_schema or self.dataset
-    
-    # add root validator to parse incoming fields & wrote them as properties
+
     @root_validator(pre=True)
     def set_properties(cls, values: Dict):
         properties = {}
@@ -75,7 +78,7 @@ class TableMeta(BaseModel):
         values["properties"].update(properties)
 
         return values
-    
+
     class Config:
         """ pydantic class config """
 
