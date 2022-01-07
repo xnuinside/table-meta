@@ -68,8 +68,6 @@ class TableMeta(BaseModel):
     @root_validator(pre=True)
     def set_properties(cls, values: Dict):
         properties = {}
-        print("SET properties ", values)
-        print(values.keys())
         for key, value in values.items():
             if key not in cls.__fields__:
                 properties[key] = value

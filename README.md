@@ -86,7 +86,10 @@ Usage example:
 
 
 ## Changelog
-**v0.2.0**
+**v0.2.2**
+1. Added if_not_exists to table properties
+
+**v0.2.1**
 1. Added support for parsing 'dataset' from data as 'table_schema' also added fields like 'project' (to support BigQuery metadata)
 2. Depencencies updated
 3. Added HQL Table Properties
