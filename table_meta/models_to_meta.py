@@ -11,7 +11,7 @@ def get_primary_keys(columns: List[Dict]) -> List[str]:
 
 
 def prepare_columns_data(columns: List[Dict], full_data: Dict) -> List[Dict]:
-
+    # todo: refactor it
     for column in columns:
         if column.get("properties", {}):
             column.update({
