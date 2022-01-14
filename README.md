@@ -86,6 +86,10 @@ Usage example:
 
 
 ## Changelog
+**v0.3.0**
+1. Added search for type in columns with foreign keys from models 
+
+
 **v0.2.2**
 1. Added if_not_exists to table properties
 
