@@ -13,9 +13,10 @@ def get_primary_keys(columns: List[Dict]) -> List[str]:
 def prepare_columns_data(columns: List[Dict], full_data: Dict) -> List[Dict]:
 
     for column in columns:
-        column.update({
-            _property: value for _property, value in column["properties"].items()
-            if _property not in ['foreign_key']})
+        if column.get("properties", {}):
+            column.update({
+                _property: value for _property, value in column["properties"].items()
+                if _property not in ['foreign_key']})
         if column["type"] is None:
             if column["default"]:
                 column["type"] = type(column["default"]).__name__
