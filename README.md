@@ -86,7 +86,7 @@ Usage example:
 
 
 ## Changelog
-**v0.3.1**
+**v0.3.2**
 1. Added 'comment' attr to the Column
 
 **v0.3.0**
