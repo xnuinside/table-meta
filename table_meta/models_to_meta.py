@@ -42,8 +42,6 @@ def prepare_columns_data(columns: List[Dict], full_data: Dict) -> List[Dict]:
 
 
 def convert_table(model: Dict, full_data: Dict) -> TableMeta:
-    print(1)
-    print(full_data)
     model["table_name"] = model["name"]
     model["columns"] = prepare_columns_data(model["attrs"], full_data)
     model["properties"]["indexes"] = model["properties"].get("indexes") or []
