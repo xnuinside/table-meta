@@ -40,7 +40,8 @@ class Column(ColumnBase):
     generated_as: Optional[str]
     properties: Optional[Dict]
     references: Optional[Dict]
-    foreign_key: bool = False
+    foreign_key: Optional[str]
+    comment: Optional[str]
 
     @validator("size")
     def size_must_contain_space(cls, v):
