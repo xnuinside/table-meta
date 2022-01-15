@@ -12,9 +12,7 @@ def get_primary_keys(columns: List[Dict]) -> List[str]:
 
 def populate_data_from_properties(column: Dict):
     if column.get("properties", {}):
-        column.update({
-            _property: value for _property, value in column["properties"].items()
-            if _property not in ['foreign_key']})
+        column.update(column["properties"])
 
 
 def prepare_columns_data(columns: List[Dict], full_data: Dict) -> List[Dict]:
@@ -25,7 +23,6 @@ def prepare_columns_data(columns: List[Dict], full_data: Dict) -> List[Dict]:
             if column["default"]:
                 column["type"] = type(column["default"]).__name__
         if column["type"] == "ManyToMany":
-            column["foreign_key"] = True
             foreign_key = column["properties"]['foreign_key']
             if '.' not in foreign_key:
                 field_name = "id"

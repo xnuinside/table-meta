@@ -86,6 +86,9 @@ Usage example:
 
 
 ## Changelog
+**v0.3.2**
+1. Added 'comment' attr to the Column
+
 **v0.3.0**
 1. Added search for type in columns with foreign keys from models 
 2. Fixed issue with popylating Column details like unique or primary key from py-models-parser 
