@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, validator, root_validator
+from pydantic.v1 import BaseModel, Field, validator, root_validator
 from typing import List, Optional, Union, Dict, Tuple
 
 
