@@ -23,6 +23,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.9"
 pydantic = "^2.12.5"
+eval-type-backport = { version = "^0.2.2", python = "<3.10" }
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4"

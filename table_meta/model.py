@@ -1,4 +1,6 @@
-from typing import Any, Dict, List, Optional, Tuple, Union
+from __future__ import annotations
+
+from typing import Any, Dict, List, Tuple, Union
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -8,29 +10,29 @@ class ColumnBase(BaseModel):
 
     name: str
     type: str
-    size: Optional[Union[str, int, Tuple[Any, ...]]] = None
+    size: Union[str, int, Tuple[Any, ...]] | None = None
 
 
 class HQLProperties(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
-    clustered_by: Optional[List[Any]] = None
-    location: Optional[str] = None
-    external: Optional[bool] = None
-    row_format: Optional[str] = None
-    fields_terminated_by: Optional[str] = None
-    lines_terminated_by: Optional[str] = None
-    map_keys_terminated_by: Optional[str] = None
-    collection_items_terminated_by: Optional[str] = None
-    stored_as: Optional[str] = None
+    clustered_by: List[Any] | None = None
+    location: str | None = None
+    external: bool | None = None
+    row_format: str | None = None
+    fields_terminated_by: str | None = None
+    lines_terminated_by: str | None = None
+    map_keys_terminated_by: str | None = None
+    collection_items_terminated_by: str | None = None
+    stored_as: str | None = None
 
 
 class TableProperties(HQLProperties):
-    indexes: Optional[List[Any]] = None
-    alter: Optional[List[Any]] = None
-    tablespace: Optional[str] = None
-    partitioned_by: Optional[List[ColumnBase]] = None
-    if_not_exists: Optional[bool] = None
+    indexes: List[Any] | None = None
+    alter: List[Any] | None = None
+    tablespace: str | None = None
+    partitioned_by: List[ColumnBase] | None = None
+    if_not_exists: bool | None = None
 
 
 class Column(ColumnBase):
@@ -38,12 +40,12 @@ class Column(ColumnBase):
     unique: bool = False
     default: Any = None
     nullable: bool = True
-    identifier: Optional[bool] = None
-    generated_as: Optional[str] = None
-    properties: Optional[Dict[str, Any]] = None
-    references: Optional[Dict[str, Any]] = None
-    foreign_key: Optional[str] = None
-    comment: Optional[str] = None
+    identifier: bool | None = None
+    generated_as: str | None = None
+    properties: Dict[str, Any] | None = None
+    references: Dict[str, Any] | None = None
+    foreign_key: str | None = None
+    comment: str | None = None
 
     @field_validator("size", mode="before")
     @classmethod
@@ -57,19 +59,19 @@ class TableMeta(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True, populate_by_name=True)
 
     name: str = Field(alias="table_name")
-    field_schema: Optional[str] = Field(default=None, alias="schema")
-    dataset: Optional[str] = None
+    field_schema: str | None = Field(default=None, alias="schema")
+    dataset: str | None = None
     columns: List[Column]
-    indexes: Optional[List[Dict[str, Any]]] = Field(default=None, alias="index")
+    indexes: List[Dict[str, Any]] | None = Field(default=None, alias="index")
     alter: Dict[str, Any] = Field(default_factory=dict)
-    checks: Optional[List[Dict[str, Any]]] = None
+    checks: List[Dict[str, Any]] | None = None
     properties: TableProperties = Field(default_factory=TableProperties)
     primary_key: List[Any]
-    parents: Optional[List[str]] = None
-    project: Optional[str] = None
+    parents: List[str] | None = None
+    project: str | None = None
 
     @property
-    def table_schema(self) -> Optional[str]:
+    def table_schema(self) -> str | None:
         return self.field_schema or self.dataset
 
     @model_validator(mode="before")
@@ -99,6 +101,6 @@ class Type(BaseModel):
 
     name: str = Field(alias="type_name")
     base_type: str
-    parents: Optional[List[str]] = None
-    properties: Optional[Dict[str, Any]] = None
-    attrs: Optional[List[Dict[str, Any]]] = None
+    parents: List[str] | None = None
+    properties: Dict[str, Any] | None = None
+    attrs: List[Dict[str, Any]] | None = None
