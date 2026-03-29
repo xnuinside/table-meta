@@ -1,13 +1,18 @@
 [tool.poetry]
 name = "table-meta"
-version = "0.3.2"
+version = "1.0.0"
 description = "Universal class that created to be a middleware, universal mapping for data from different parsers - simple-ddl-parser and py-models-parser"
 authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
 homepage = "https://github.com/xnuinside/table-meta"
 repository = "https://github.com/xnuinside/table-meta"
 license = "MIT"
-readme = "docs/README.rst"
+readme = "README.md"
 classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Software Development",
     "Topic :: Software Development :: Libraries",
     "Topic :: Utilities",
@@ -16,14 +21,35 @@ classifiers = [
 
 
 [tool.poetry.dependencies]
-python = ">=3.6.2,<4.0"
-pydantic = "^1.8.2"
+python = "^3.9"
+pydantic = "^2.12.5"
 
-[tool.poetry.dev-dependencies]
-pytest = "^5.2"
-twine = "^3.4.2"
-flake8 = "^4.0.1"
-pre-commit = "^2.16.0"
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4"
+pytest-cov = "^7.0.0"
+twine = "^6.1"
+black = ">=24,<26"
+ruff = ">=0.6.9,<0.16.0"
+tox = { version = "^4.32.0", python = ">=3.10,<4.0" }
+pre-commit = "^4.3.0"
+
+[tool.pytest.ini_options]
+addopts = "--cov=table_meta --cov-branch --cov-report=term-missing --cov-fail-under=100"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["table_meta"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+
+[tool.ruff]
+exclude = [".tox"]
+
+[tool.black]
+exclude = "(/\\.tox/|/\\.venv/)"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
