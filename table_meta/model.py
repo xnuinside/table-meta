@@ -1,93 +1,106 @@
-from pydantic import BaseModel, Field, validator, root_validator
-from typing import List, Optional, Union, Dict, Tuple
+from __future__ import annotations
+
+from typing import Any, Dict, List, Tuple, Union
+
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class ColumnBase(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
     name: str
     type: str
-    size: Optional[Union[str, int, Tuple]]
+    size: Union[str, int, Tuple[Any, ...]] | None = None
 
 
 class HQLProperties(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
 
-    clustered_by: Optional[List]
-    location: Optional[str]
-    external: Optional[bool]
-    row_format: Optional[str]
-    fields_terminated_by: Optional[str]
-    lines_terminated_by: Optional[str]
-    map_keys_terminated_by: Optional[str]
-    collection_items_terminated_by: Optional[str]
-    stored_as: Optional[str]
+    clustered_by: List[Any] | None = None
+    location: str | None = None
+    external: bool | None = None
+    row_format: str | None = None
+    fields_terminated_by: str | None = None
+    lines_terminated_by: str | None = None
+    map_keys_terminated_by: str | None = None
+    collection_items_terminated_by: str | None = None
+    stored_as: str | None = None
 
 
 class TableProperties(HQLProperties):
-
-    indexes: Optional[List]
-    alter: Optional[List]
-    tablespace: Optional[str]
-    partitioned_by: Optional[List[ColumnBase]]
-    if_not_exists: Optional[bool]
+    indexes: List[Any] | None = None
+    alter: List[Any] | None = None
+    tablespace: str | None = None
+    partitioned_by: List[ColumnBase] | None = None
+    if_not_exists: bool | None = None
 
 
 class Column(ColumnBase):
-
     primary_key: bool = False
     unique: bool = False
-    default: Optional[str]
+    default: Any = None
     nullable: bool = True
-    identifier: Optional[bool]
-    generated_as: Optional[str]
-    properties: Optional[Dict]
-    references: Optional[Dict]
-    foreign_key: Optional[str]
-    comment: Optional[str]
+    identifier: bool | None = None
+    generated_as: str | None = None
+    properties: Dict[str, Any] | None = None
+    references: Dict[str, Any] | None = None
+    foreign_key: str | None = None
+    comment: str | None = None
 
-    @validator("size")
-    def size_must_contain_space(cls, v):
-        if isinstance(v, str) and v.isnumeric():
-            return int(v)
-        return v
+    @field_validator("size", mode="before")
+    @classmethod
+    def size_must_contain_space(cls, value: Any) -> Any:
+        if isinstance(value, str) and value.isnumeric():
+            return int(value)
+        return value
 
 
 class TableMeta(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True, populate_by_name=True)
+
     name: str = Field(alias="table_name")
-    field_schema: Optional[str] = Field(alias="schema")
-    dataset: Optional[str]
+    field_schema: str | None = Field(default=None, alias="schema")
+    dataset: str | None = None
     columns: List[Column]
-    indexes: Optional[List[Dict]] = Field(alias="index")
-    alter: Optional[Dict] = {}
-    checks: Optional[List[Dict]]
-    properties: Optional[TableProperties]
-    primary_key: List
-    parents: Optional[List[str]]
-    project: Optional[str]
+    indexes: List[Dict[str, Any]] | None = Field(default=None, alias="index")
+    alter: Dict[str, Any] = Field(default_factory=dict)
+    checks: List[Dict[str, Any]] | None = None
+    properties: TableProperties = Field(default_factory=TableProperties)
+    primary_key: List[Any]
+    parents: List[str] | None = None
+    project: str | None = None
 
     @property
-    def table_schema(self):
+    def table_schema(self) -> str | None:
         return self.field_schema or self.dataset
 
-    @root_validator(pre=True)
-    def set_properties(cls, values: Dict):
-        properties = {}
-        for key, value in values.items():
-            if key not in cls.__fields__:
-                properties[key] = value
-        if not values.get("properties"):
-            values["properties"] = {}
-        values["properties"].update(properties)
+    @model_validator(mode="before")
+    @classmethod
+    def set_properties(cls, values: Any) -> Any:
+        if not isinstance(values, dict):
+            return values
+
+        field_names = set(cls.model_fields)
+        aliases = {field.alias for field in cls.model_fields.values() if field.alias}
+        properties = {
+            key: value
+            for key, value in values.items()
+            if key not in field_names and key not in aliases
+        }
+
+        values = dict(values)
+        existing_properties = dict(values.get("properties") or {})
+        existing_properties.update(properties)
+        values["properties"] = existing_properties
 
         return values
 
-    class Config:
-        """ pydantic class config """
-
-        arbitrary_types_allowed = True
-
 
 class Type(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
     name: str = Field(alias="type_name")
     base_type: str
-    parents: Optional[List[str]]
-    properties: Optional[Dict]
-    attrs: Optional[List[Dict]]
+    parents: List[str] | None = None
+    properties: Dict[str, Any] | None = None
+    attrs: List[Dict[str, Any]] | None = None
